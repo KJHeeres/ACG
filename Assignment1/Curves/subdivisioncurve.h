@@ -21,6 +21,8 @@ public:
     void setPointPosition(int idx, QVector2D p);
     void removePoint(int idx);
 
+    void subdivide();
+
 
 private:
     QVector<int> subdivMask, firstStencil, secondStencil;

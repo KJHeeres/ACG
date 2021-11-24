@@ -56,19 +56,22 @@ void SubdivisionCurve::presetNet(int preset) {
 
 void SubdivisionCurve::subdivide() {
 
-    size_t n = /* number of new points in the subdivided curve */
+    size_t n = netCoords.size();/* number of new points in the subdivided curve */
     curveCoords = QVector<QVector2D>(n);
 
     //even points
     for(size_t i = 0; i < netCoords.size()-1; ++i) {
-        //compute even points
-        curveCoords[/*even index*/] = /* masked point */;
+        if(i%2 == 0){
+            curveCoords[i] = netCoords[i]/* masked point */;
+        }
     }
 
     //odd points
     for(size_t i = 1; i < netCoords.size() - 1; ++i) {
         //compute odd points
-        curveCoords[/*odd index*/] = /* masked point */;
+        if(i%2 == 1){
+            curveCoords[i] = netCoords[i]/* masked point */;
+        }
     }
 
 }

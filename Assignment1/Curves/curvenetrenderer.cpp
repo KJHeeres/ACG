@@ -23,6 +23,8 @@ void CurveNetRenderer::initShaders() {
     //you can add additional shaders by right-clicking resources.qrc->add existing files
     shaderProg->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/vertshader.glsl");
     shaderProg->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/fragshader.glsl");
+    shaderProg->addShaderFromSourceFile(QOpenGLShader::TessellationControl, ":/shaders/fragshader.glsl");
+    shaderProg->addShaderFromSourceFile(QOpenGLShader::TessellationEvaluation, ":/shaders/fragshader.glsl");
 
     shaderProg->link();
 }

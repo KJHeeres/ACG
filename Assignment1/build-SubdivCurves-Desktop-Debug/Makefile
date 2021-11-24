@@ -71,7 +71,9 @@ OBJECTS       = main.o \
 		qrc_resources.o \
 		moc_mainwindow.o \
 		moc_mainview.o
-DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
+DIST          = ../Curves/shaders/tesconshader.fsh \
+		../Curves/shaders/tesevalshader.glsl \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf \
@@ -127,6 +129,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		../Curves/.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -226,6 +229,7 @@ Makefile: ../Curves/SubdivCurves.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -304,6 +308,7 @@ Makefile: ../Curves/SubdivCurves.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -442,7 +447,12 @@ curverenderer.o: ../Curves/curverenderer.cpp ../Curves/curverenderer.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o curverenderer.o ../Curves/curverenderer.cpp
 
 mainwindow.o: ../Curves/mainwindow.cpp ../Curves/mainwindow.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../Curves/mainview.h \
+		../Curves/curvenetrenderer.h \
+		../Curves/renderer.h \
+		../Curves/settings.h \
+		../Curves/subdivisioncurve.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Curves/mainwindow.cpp
 
 mainview.o: ../Curves/mainview.cpp ../Curves/mainview.h \

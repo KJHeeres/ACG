@@ -31,3 +31,7 @@ FORMS    += mainwindow.ui
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    shaders/tesconshader.fsh \
+    shaders/tesevalshader.glsl

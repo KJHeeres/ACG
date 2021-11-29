@@ -81,7 +81,7 @@ void MainView::paintGL() {
     }
 
     if (settings.showCurvePts) {
-        // draw the curve with your renderer
+        subCurve.subdivide();
     }
 
 }

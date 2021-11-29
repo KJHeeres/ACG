@@ -11,8 +11,12 @@ public:
     SubdivisionCurve();
 
     inline QVector<QVector2D> getNetCoords() { return netCoords; }
+    inline QVector<QVector2D> getCurveCoords() { return curveCoords; }
+    inline QString getSubdivMethod() { return subdivMethod; }
 
     void setMask(QString stringMask);
+    void setSubdivSteps(int newSteps);
+    void setSubdivMethod(QString method);
     void presetNet(int preset);
 
     int findClosest(QVector2D p);
@@ -25,6 +29,10 @@ public:
 
 
 private:
+    int subdivSteps;
+
+    QString subdivMethod;
+
     QVector<int> subdivMask, firstStencil, secondStencil;
 
     QVector<QVector2D> curveCoords;

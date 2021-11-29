@@ -39,6 +39,8 @@ public:
     QLabel *presetLabel;
     QComboBox *netPresets;
     QLineEdit *subdivMask;
+    QComboBox *subdivisionType;
+    QLabel *stepsLabel_2;
     MainView *mainView;
 
     void setupUi(QMainWindow *MainWindow)
@@ -105,6 +107,15 @@ public:
         subdivMask = new QLineEdit(mainGB);
         subdivMask->setObjectName(QString::fromUtf8("subdivMask"));
         subdivMask->setGeometry(QRect(40, 250, 151, 26));
+        subdivisionType = new QComboBox(mainGB);
+        subdivisionType->addItem(QString());
+        subdivisionType->addItem(QString());
+        subdivisionType->addItem(QString());
+        subdivisionType->setObjectName(QString::fromUtf8("subdivisionType"));
+        subdivisionType->setGeometry(QRect(40, 410, 151, 25));
+        stepsLabel_2 = new QLabel(mainGB);
+        stepsLabel_2->setObjectName(QString::fromUtf8("stepsLabel_2"));
+        stepsLabel_2->setGeometry(QRect(40, 380, 151, 18));
 
         horizontalLayout->addWidget(mainGB);
 
@@ -142,6 +153,11 @@ public:
         netPresets->setItemText(2, QApplication::translate("MainWindow", "G", nullptr));
 
         subdivMask->setText(QApplication::translate("MainWindow", "1 4 6 4 1", nullptr));
+        subdivisionType->setItemText(0, QApplication::translate("MainWindow", "CPU", nullptr));
+        subdivisionType->setItemText(1, QApplication::translate("MainWindow", "GPU quadratic", nullptr));
+        subdivisionType->setItemText(2, QApplication::translate("MainWindow", "GPU cubic", nullptr));
+
+        stepsLabel_2->setText(QApplication::translate("MainWindow", "Subdivision", nullptr));
     } // retranslateUi
 
 };

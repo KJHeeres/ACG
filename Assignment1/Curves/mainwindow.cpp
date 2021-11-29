@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     qDebug() << "✓✓ MainWindow constructor";
@@ -27,8 +28,10 @@ void MainWindow::on_controlNet_toggled(bool checked) {
 }
 
 void MainWindow::on_curvePoints_toggled(bool checked) {
+    ui->mainView->subCurve.subdivide();
     ui->mainView->settings.showCurvePts = checked;
     ui->mainView->update();
+    ui->mainView->updateBuffers();
 }
 
 void MainWindow::on_netPresets_currentIndexChanged(int index) {
@@ -44,7 +47,15 @@ void MainWindow::on_subdivMask_returnPressed() {
 }
 
 void MainWindow::on_subdivSteps_valueChanged(int arg1) {
-    // ...
+    ui->mainView->subCurve.setSubdivSteps(arg1);
+    ui->mainView->subCurve.subdivide();
+    ui->mainView->update();
+    ui->mainView->updateBuffers();
+}
 
-
+void MainWindow::on_subdivisionType_currentTextChanged(QString subdivisionMethod)
+{
+    ui->mainView->subCurve.setSubdivMethod(subdivisionMethod);
+    ui->mainView->update();
+    ui->mainView->updateBuffers();
 }

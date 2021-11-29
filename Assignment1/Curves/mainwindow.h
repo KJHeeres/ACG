@@ -22,6 +22,8 @@ private slots:
   void on_subdivMask_returnPressed();
   void on_subdivSteps_valueChanged(int arg1);
 
+  void on_subdivisionType_currentTextChanged(QString arg1);
+
 private:
   Ui::MainWindow *ui;
 

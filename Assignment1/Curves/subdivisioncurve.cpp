@@ -1,10 +1,13 @@
 #include "subdivisioncurve.h"
 #include <QTextStream>
 #include <QDebug>
+#include <iostream>
+#include <typeinfo>
 
 SubdivisionCurve::SubdivisionCurve()
 {
-
+    subdivSteps = 0;
+    subdivMethod = QString("CPU");
 }
 
 void SubdivisionCurve::presetNet(int preset) {
@@ -57,12 +60,19 @@ void SubdivisionCurve::presetNet(int preset) {
 void SubdivisionCurve::subdivide() {
 
     size_t n = netCoords.size();/* number of new points in the subdivided curve */
+    curveCoords.clear();
     curveCoords = QVector<QVector2D>(n);
+
+    //subdivSteps
+    //firstStencil
+    //secondStencil
+
+    qDebug() << "::called subdivide::";
 
     //even points
     for(size_t i = 0; i < netCoords.size()-1; ++i) {
         if(i%2 == 0){
-            curveCoords[i] = netCoords[i]/* masked point */;
+            curveCoords[i] = QVector2D((float) i / 4, (float) i / 4)/* masked point */;
         }
     }
 
@@ -70,25 +80,39 @@ void SubdivisionCurve::subdivide() {
     for(size_t i = 1; i < netCoords.size() - 1; ++i) {
         //compute odd points
         if(i%2 == 1){
-            curveCoords[i] = netCoords[i]/* masked point */;
+            curveCoords[i] = QVector2D((float) i / 4, (float) i / 4)/* masked point */;
         }
     }
+
 
 }
 
 void SubdivisionCurve::addPoint(QVector2D p) {
     netCoords.append(p);
+    subdivide();
     //you should probably recalculate the curve
 }
 
 void SubdivisionCurve::setPointPosition(int idx, QVector2D p) {
     netCoords[idx] = p;
+    subdivide();
     //you should probably recalculate the curve
 }
 
 void SubdivisionCurve::removePoint(int idx) {
     netCoords.remove(idx);
+    subdivide();
     //you should probably recalculate the curve
+}
+
+void SubdivisionCurve::setSubdivSteps(int newSteps) {
+    subdivSteps = newSteps;
+    qDebug() << "::subdiv steps changed::";
+}
+
+void SubdivisionCurve::setSubdivMethod(QString method) {
+    subdivMethod = method;
+    qDebug() << "::subdiv method changed::";
 }
 
 void SubdivisionCurve::setMask(QString stringMask) {
